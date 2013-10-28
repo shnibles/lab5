@@ -34,3 +34,37 @@ function sortObjArray(objArray, propName) {
     });
 } //sortObjArray()
 
+
+/* render()
+    Uses the html template and creates a person div for each 
+    entry in the entries array.
+
+    entries         array of objects to render
+
+    returns undefined
+*/
+function render(entries) {
+    var personTemplate = $(".template");
+    var addressBook = $(".address-book");
+
+    // clear the html from the address book element before
+    // rendering new entries
+    addressBook.empty();
+
+    // for each entry, get a clone of the template, set the 
+    // entry information, and append it to the address book.
+    for(var i = 0; i < entries.length; i++) {
+        var newPerson = personTemplate.clone();
+
+        newPerson.find(".first").html(entries[i].first);
+        newPerson.find(".last").html(entries[i].last);
+        newPerson.find(".title").html(entries[i].title);
+        newPerson.find(".dept").html(entries[i].dept);
+        newPerson.find(".pic").attr("src", entries[i].pic);
+        newPerson.find(".pic").attr("alt", "picture of " + entries[i].first);
+
+        newPerson.removeClass("template");
+
+        addressBook.append(newPerson);
+    }
+}
