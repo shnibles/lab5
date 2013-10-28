@@ -68,3 +68,23 @@ function render(entries) {
         addressBook.append(newPerson);
     }
 }
+
+$(".sort-ui .btn").click(function() {
+    // wrap the btn as a jQuery object (so we can determine
+    // what we're sorting by)
+    var sortBtn = $(this); 
+    var sortby = sortBtn.attr('data-sortby');
+    sortObjArray(Employees.entries, sortby);
+    render(Employees.entries);
+
+    // update which button is 'active'
+    sortBtn.siblings(".active").removeClass("active");
+    sortBtn.addClass("active");
+});
+
+// Set the content to be sorted/rendered upon page load
+$(function() {
+    // document is ready
+    sortObjArray(Employees.entries, "last")
+    render(Employees.entries)
+});
