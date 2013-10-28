@@ -47,6 +47,9 @@ function render(entries) {
     var personTemplate = $(".template");
     var addressBook = $(".address-book");
 
+    // Hide the entries with a smooth fade-out
+    addressBook.hide();
+
     // clear the html from the address book element before
     // rendering new entries
     addressBook.empty();
@@ -67,6 +70,9 @@ function render(entries) {
 
         addressBook.append(newPerson);
     }
+
+    // Use a fade-in animation on the address book
+    addressBook.fadeIn()
 }
 
 $(".sort-ui .btn").click(function() {
